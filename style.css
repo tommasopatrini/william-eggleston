@@ -1,0 +1,1396 @@
+/* ========================================
+   CSS VARIABLES - THEME COLORS
+   ======================================== */
+
+:root {
+    --color-primary: #ff0000;
+    --color-secondary: white;
+    --color-tertiary: black;
+}
+
+.dark-theme {
+    --color-primary: black;
+    --color-secondary: rgb(255, 0, 0);
+    --color-tertiary: rgb(255, 255, 255);
+}
+
+/* ========================================
+   FONT IMPORTS
+   ======================================== */
+
+@font-face {
+    font-family: 'PP Neue Corp Narrow Ultrabold';
+    src: url('assets/fonts/PPNeueCorp-NarrowUltrabold.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PP Neue Corp Compact Medium';
+    src: url('assets/fonts/PPNeueCorp-CompactMedium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PP Playground Medium';
+    src: url('assets/fonts/PPPlayground-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+/* ========================================
+   RESET & BASE STYLES
+   ======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--color-primary);
+    overflow-x: hidden;
+    min-height: 100vh;
+    transition: background-color 0.5s ease;
+}
+
+/* ========================================
+   PARAGRAPH ANIMATIONS
+   ======================================== */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(100px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes fadeInUp-large {
+    from {
+        opacity: 0;
+        transform: translateY(140px) scale(0.92);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes fadeInUp-centered {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 140px) scale(0.92);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0) scale(1);
+    }
+}
+
+@keyframes fadeInUp-centered-mobile {
+    from {
+        opacity: 0;
+        transform: translateY(140px) scale(0.92);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes fadeInUp-home-title {
+    from {
+        opacity: 0;
+        transform: translate(-50%, calc(-50% + 100px)) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes fadeInUp-xlarge {
+    from {
+        opacity: 0;
+        transform: translateY(180px) scale(0.7);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes fadeInUp-small {
+    from {
+        opacity: 0;
+        transform: translateY(70px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.grid-image,
+.about-image,
+.about-image-right img,
+.work-box,
+.gallery-full,
+.gallery-half,
+.about-paragraph {
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.grid-image.fade-in-up,
+.about-image.fade-in-up,
+.gallery-full.fade-in-up,
+.gallery-half.fade-in-up {
+    animation: fadeInUp 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.work-box.fade-in-up:nth-child(odd) {
+    animation: fadeInUp 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0s;
+}
+
+.work-box.fade-in-up:nth-child(even) {
+    animation: fadeInUp 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.12s;
+}
+
+.about-paragraph-1.fade-in-up {
+    animation: fadeInUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0s;
+}
+
+.about-paragraph-2.fade-in-up {
+    animation: fadeInUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.15s;
+}
+
+.about-image-right img.fade-in-up {
+    animation: fadeInUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.3s;
+}
+
+/* ========================================
+   GRID SYSTEM
+   ======================================== */
+
+.container {
+    width: 100%;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ========================================
+   NAVIGATION
+   ======================================== */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background-color: transparent;
+    z-index: 5000;
+}
+
+.navbar-center {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.theme-toggle {
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}
+
+.theme-toggle .theme-circle {
+    fill: none;
+    stroke: var(--color-secondary);
+    stroke-width: 2;
+    transition: stroke 0.5s ease;
+}
+
+.theme-toggle .theme-path {
+    fill: var(--color-secondary);
+    transition: fill 0.5s ease;
+}
+
+.dark-theme .theme-toggle .theme-circle {
+    stroke: var(--color-secondary);
+}
+
+.dark-theme .theme-toggle .theme-path {
+    fill: var(--color-secondary);
+}
+
+
+.nav-link {
+    font-family: 'PP Neue Corp Compact Medium', sans-serif;
+    font-size: clamp(12px, 2vw, 16px);
+    color: var(--color-secondary);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.5s ease;
+}
+
+.nav-link:hover,
+.nav-link:active {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+
+
+/* ========================================
+   HOME PAGE - MAIN CONTAINER
+   ======================================== */
+
+.home-container {
+    position: relative;
+    min-height: 100vh;
+    padding: 0;
+    padding-top: 50px;
+}
+
+/* ========================================
+   EGGLESTON TITLE
+   ======================================== */
+
+.eggleston-title {
+    font-family: 'PP Playground Medium', serif;
+    font-size: clamp(80px, 20vw, 300px);
+    color: var(--color-tertiary);
+    font-weight: 300;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    white-space: nowrap;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+
+.animate-home-title {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% + 60px));
+    animation: fadeInUp-home-title 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.1s;
+}
+
+.eggleston-title {
+    position: fixed;
+    top: 50vh;
+}
+
+/* ========================================
+   IMAGES GRID - DESKTOP
+   ======================================== */
+
+.images-grid {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    margin-top: 100vh;
+    padding: 12px;
+    margin-bottom: 100px;
+}
+
+.grid-image {
+    position: absolute;
+    object-fit: cover;
+    background-color: var(--color-tertiary);
+}
+
+/* Image Positioning */
+.img-1 {
+    width: 200px;
+    height: 131px;
+    top: 20%;
+    left: 11%;
+    z-index: 2000;
+}
+
+.img-1.fade-in-up {
+    animation: fadeInUp-small 1.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.1s;
+}
+
+.img-2 {
+    height: 200px;
+    width: 131px;
+    top: 8%;
+    left: 40%;
+}
+
+.img-2.fade-in-up {
+    animation: fadeInUp-xlarge 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.4s;
+}
+
+.img-3 {
+    height: 200px;
+    width: 131px;
+    top: 15%;
+    right: 30%;
+    z-index: 2000;
+}
+
+.img-3.fade-in-up {
+    animation: fadeInUp 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.2s;
+}
+
+.img-4 {
+    width: 200px;
+    height: 131px;
+    top: 25%;
+    right: 7%;
+}
+
+.img-4.fade-in-up {
+    animation: fadeInUp-large 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.55s;
+}
+
+.img-5 {
+    width: 200px;
+    height: 131px;
+    top: 55%;
+    left: 14%;
+}
+
+.img-5.fade-in-up {
+    animation: fadeInUp-large 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.3s;
+}
+
+.img-6 {
+    height: 200px;
+    width: 131px;
+    top: 60%;
+    left: 40%;
+    z-index: 2000;
+}
+
+.img-6.fade-in-up {
+    animation: fadeInUp-xlarge 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.7s;
+}
+
+.img-7 {
+    width: 200px;
+    height: 131px;
+    top: 57%;
+    right: 27%;
+}
+
+.img-7.fade-in-up {
+    animation: fadeInUp-small 1.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.45s;
+}
+
+/* Animations for about/work page titles and text */
+.animate-title {
+    opacity: 0;
+    transform: translateY(60px);
+    animation: fadeInUp 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.1s;
+}
+
+.animate-text-1 {
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeInUp 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.25s;
+}
+
+.animate-text-2 {
+    opacity: 0;
+    transform: translate(-50%, 50px);
+    animation: fadeInUp-centered 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.4s;
+}
+
+.animate-text-3 {
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeInUp 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.55s;
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+
+.footer {
+    background-color: var(--color-secondary);
+    padding: 36px 12px 12px 12px;
+    position: relative;
+    border-top: 2px solid var(--color-tertiary);
+    z-index: 200;
+    margin-top: 400px;
+}
+
+.dark-theme .footer {
+    border-top: 2px solid var(--color-primary);
+}
+
+.footer-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0;
+    margin-bottom: 40px;
+    font-family: 'PP Neue Corp Compact Medium', sans-serif;
+    font-size: clamp(12px, 2vw, 16px);
+    color: var(--color-tertiary);
+    text-transform: uppercase;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.dark-theme .footer-text {
+    color: var(--color-primary);
+}
+
+.footer-item {
+    text-align: center;
+}
+
+.footer-logo {
+    width: 100%;
+    padding-bottom: 6px;
+}
+
+.footer-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ========================================
+   BIO SECTION
+   ======================================== */
+
+.bio-section {
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    margin-top: 300px;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bio-box {
+    background-color: var(--color-secondary);
+    border: 2px solid var(--color-tertiary);
+    width: 33%;
+    box-sizing: border-box;
+    box-shadow: 6px 6px 0 var(--color-tertiary);
+}
+
+.dark-theme .bio-box {
+    background-color: var(--color-primary);
+}
+.dark-theme .bio-header {
+    background-color: var(--color-primary);
+}
+
+.bio-box-1 {
+    transform: translateX(-45%);
+}
+
+.bio-box-2 {
+    transform: translateX(45%);
+}
+
+.bio-box-3 {
+    transform: translateX(0);
+}
+
+.bio-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 12px;
+    border-bottom: 2px solid var(--color-tertiary);
+    background-color: var(--color-secondary);
+}
+
+.bio-title {
+    font-family: 'PP Neue Corp Compact Medium', sans-serif;
+    font-size: 16px;
+    color: var(--color-tertiary);
+    text-transform: none;
+}
+
+.bio-question {
+    font-family: 'PP Neue Corp Compact Medium', sans-serif;
+    font-size: 16px;
+    color: var(--color-tertiary);
+}
+
+.bio-text {
+    font-family: 'PP Neue Corp Compact Medium', sans-serif;
+    font-size: clamp(13px, 1.2vw, 16px);
+    color: var(--color-tertiary);
+    line-height: 1.4;
+    padding: 12px;
+    margin: 0;
+}
+
+/* ========================================
+   ABOUT PAGE
+   ======================================== */
+
+.about-container {
+    padding-top: 50px;
+    min-height: 100vh;
+}
+
+.about-heading {
+    font-family: 'PP Neue Corp Narrow Ultrabold', sans-serif;
+    font-weight: 900;
+    color: var(--color-tertiary);
+    text-align: center;
+    width: 100vw;
+    margin: 0;
+    padding: 40px 40px 80px 40px;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    font-stretch: ultra-condensed;
+    font-size: 35vw;
+    margin-bottom: 40px;
+}
+
+.about-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 12px;
+    margin-bottom: 120px;
+    position: relative;
+}
+
+.about-text-left,
+.about-text-right {
+    font-family: 'PP Neue Corp Compact Medium', sans-serif;
+    font-size: clamp(12px, 2vw, 16px);
+    color: var(--color-tertiary);
+    text-transform: uppercase;
+    z-index: 1;
+}
+
+.about-eggleston {
+    font-family: 'PP Playground Medium', serif;
+    font-size: clamp(40px, 8vw, 120px);
+    color: var(--color-tertiary);
+    font-weight: 300;
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    white-space: nowrap;
+}
+
+.about-image-container {
+    width: 100%;
+    padding: 0 12px 0px 12px;
+}
+
+.about-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+/* About Section Title */
+.about-section-title {
+    font-family: 'PP Neue Corp Narrow Ultrabold', sans-serif;
+    font-weight: 900;
+    color: var(--color-tertiary);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    font-stretch: ultra-condensed;
+    font-size: clamp(20px, 4vw, 60px);
+    margin: 12px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+}
+
+.about-section-title h2 {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    font-family: 'PP Neue Corp Narrow Ultrabold', sans-serif;
+    font-weight: 900;
+    color: var(--color-tertiary);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    font-stretch: ultra-condensed;
+    font-size: clamp(20px, 4vw, 60px);
+    padding-right: 20px;
+}
+
+/* Marquee Animation */
+.marquee {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.marquee-content {
+    display: inline-flex;
+    animation: marquee 20s linear infinite;
+    will-change: transform;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.marquee-content-reverse {
+    animation: marquee-reverse 20s linear infinite;
+}
+
+@keyframes marquee-reverse {
+    0% {
+        transform: translateX(-50%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* About Content Section */
+.about-content-section {
+    background-color: var(--color-secondary);
+    padding: 12px;
+    margin: 12px 0;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 12px;
+    align-items: start;
+}
+
+.about-text-columns {
+    grid-column: 1 / 8;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.about-paragraph {
+    font-family: 'PP Neue Corp Compact Medium', sans-serif;
+    font-size: clamp(13px, 1.2vw, 16px);
+    color: var(--color-tertiary);
+    line-height: 1.2;
+    margin: 0;
+}
+
+.about-paragraph-1 {
+    width: calc(100% - (100% / 6));
+}
+
+.about-paragraph-2 {
+    margin-left: calc(100% / 6);
+}
+
+.about-image-right {
+    grid-column: 8 / 13;
+    width: 100%;
+}
+
+.about-image-right img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* About Gallery Section */
+.about-gallery {
+    padding: 0 12px;
+    margin: 12px 0;
+}
+
+.gallery-full {
+    width: 100%;
+    margin: 12px 0;
+}
+
+.gallery-full img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.gallery-double {
+    display: flex;
+    gap: 12px;
+    margin: 12px 0;
+}
+
+.gallery-half {
+    width: calc(50% - 6px);
+}
+
+.gallery-half img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* To Top Section */
+.to-top-section {
+    background-color: var(--color-primary);
+    padding: 60px 120px;
+    text-align: center;
+    position: relative;
+    margin: 300px 0 0 0;
+}
+
+.to-top-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 36px;
+}
+
+.to-top-link {
+    font-family: 'PP Neue Corp Compact Medium', sans-serif;
+    font-size: clamp(12px, 2vw, 16px);
+    color: var(--color-tertiary);
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.to-top-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.to-top-nav-link {
+    font-family: 'PP Neue Corp Compact Medium', sans-serif;
+    font-size: clamp(12px, 2vw, 16px);
+    color: var(--color-tertiary);
+    text-decoration: none;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+.to-top-nav-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.to-top-left {
+    flex: 1;
+    text-align: left;
+}
+
+.to-top-right {
+    flex: 1;
+    text-align: right;
+}
+
+.to-top-eggleston {
+    font-family: 'PP Playground Medium', serif;
+    font-size: clamp(40px, 8vw, 120px);
+    color: var(--color-tertiary);
+    font-weight: 300;
+    margin: 0;
+}
+
+/* ========================================
+    MEDIA QUERIES - TABLET & MOBILE
+    ======================================== */
+
+@media (max-width: 768px) {
+     /* Navigation */
+     .navbar {
+          padding: 12px;
+          gap: 8px;
+     }
+
+     .nav-link {
+          font-size: clamp(12px, 3.5vw, 16px);
+          white-space: nowrap;
+     }
+
+     .nav-left {
+          flex: 0 0 auto;
+          text-align: left;
+     }
+
+     .nav-center {
+          flex: 0 1 auto;
+          text-align: center;
+     }
+
+     .nav-right {
+          flex: 0 0 auto;
+          text-align: right;
+     }
+
+     /* Eggleston Title - Fixed on Mobile */
+     .eggleston-title {
+          position: fixed;
+          font-size: clamp(60px, 20vw, 120px);
+          z-index: 500;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+     }
+
+     /* Images Grid - Mobile Layout */
+     .images-grid {
+          display: flex;
+          flex-direction: column;
+          gap: 40px;
+          padding: 24px;
+          min-height: auto;
+          position: relative;
+          align-items: center;
+          margin-bottom: 60px;
+     }
+
+     .grid-image {
+          position: relative;
+          width: auto;
+          height: auto;
+          top: auto;
+          left: auto;
+          right: auto;
+     }
+
+     /* Individual Image Positioning - Staggered */
+     .img-1 {
+          width: 200px;
+          height: 131px;
+          margin-left: -60px;
+     }
+
+     .img-2 {
+          height: 200px;
+          width: 131px;
+          margin-right: -50px;
+     }
+
+     .img-3 {
+          height: 200px;
+          width: 131px;
+          margin-left: -70px;
+     }
+
+     .img-4 {
+          width: 200px;
+          height: 131px;
+          margin-right: -60px;
+     }
+
+     .img-5 {
+          width: 200px;
+          height: 131px;
+          margin-left: -55px;
+     }
+
+     .img-6 {
+          height: 200px;
+          width: 131px;
+          margin-right: -65px;
+     }
+
+     .img-7 {
+          width: 200px;
+          height: 131px;
+          margin-left: -50px;
+     }
+
+     /* Footer - Mobile Layout */
+
+     .footer {
+    margin-top: 25vh;
+}
+
+     .footer-text {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          font-size: clamp(12px, 2.5vw, 16px);
+          gap: 2px;
+     }
+
+     .footer-item {
+          flex: none;
+          width: 100%;
+     }
+
+     .home-container {
+          padding-top: 50px;
+     }
+
+     .bio-section {
+          padding: 0 12px;
+          margin-top: 400px;
+          margin-bottom: 400px;
+     }
+
+     .bio-box {
+          width: calc(100% - 6px);
+          margin-right: 6px;
+     }
+
+     .bio-box-1,
+     .bio-box-2,
+     .bio-box-3 {
+          transform: translateX(0);
+     }
+
+     .bio-header {
+          padding: 10px 12px;
+     }
+
+     .bio-title {
+          font-size: 13px;
+     }
+
+     .bio-question {
+          font-size: 13px;
+     }
+
+     .bio-text {
+          font-size: clamp(13px, 3.5vw, 16px);
+          line-height: 1.2;
+          padding: 12px;
+     }
+
+     /* About Page - Mobile */
+     .about-heading {
+          font-size: 28vw;
+          padding: 20px 12px 60px 12px;
+     }
+
+     .about-info {
+          flex-direction: column;
+          gap: 8px;
+          margin-bottom: 40px;
+          padding: 0 12px;
+          text-align: center;
+          align-items: center;
+     }
+
+     .about-text-left,
+     .about-text-right {
+          font-size: clamp(12px, 3.5vw, 16px);
+          position: relative;
+          z-index: 10;
+     }
+
+     .about-eggleston {
+          font-size: clamp(50px, 12vw, 80px);
+          position: static;
+          margin: 12px auto;
+          text-align: center;
+          left: auto;
+          right: auto;
+          transform: translateX(0);
+          width: 100%;
+     }
+     
+     .about-eggleston.animate-text-2 {
+          transform: translateY(50px);
+          animation: fadeInUp-centered-mobile 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          animation-delay: 0.4s;
+     }
+
+     .about-image {
+          aspect-ratio: 9/16;
+          object-fit: cover;
+     }
+
+     /* About Section Title - Mobile */
+     .about-section-title {
+          font-size: clamp(30px, 6vw, 50px);
+          margin: 12px 0;
+          letter-spacing: 0.02em;
+     }
+     
+     .about-section-title h2 {
+          font-size: clamp(30px, 6vw, 50px);
+          letter-spacing: 0.02em;
+     }
+     
+     .work-section-title {
+          font-size: clamp(30px, 6vw, 50px);
+          margin: 12px 0;
+          letter-spacing: 0.02em;
+     }
+     
+     .work-section-title h2 {
+          font-size: clamp(30px, 6vw, 50px);
+          letter-spacing: 0.02em;
+     }
+
+     /* About Content Section - Mobile */
+     .about-content-section {
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+          padding: 12px;
+     }
+
+     .about-text-columns {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 0;
+     }
+
+     .about-paragraph {
+          font-size: clamp(13px, 3.5vw, 16px);
+     }
+
+     .about-paragraph-1 {
+          width: 100%;
+     }
+
+     .about-paragraph-2 {
+          margin-left: 50px;
+     }
+
+     .about-image-right {
+          width: 100%;
+     }
+
+     .about-image-right img {
+          width: 100%;
+          height: auto;
+     }
+
+     /* About Gallery - Mobile */
+     .gallery-double {
+          flex-direction: column;
+          gap: 12px;
+     }
+
+     .gallery-half {
+          width: 100%;
+     }
+
+     .gallery-half img,
+     .gallery-full img {
+          aspect-ratio: 1 / 1;
+          object-fit: cover;
+     }
+
+     /* To Top Section - Mobile */
+     .to-top-section {
+          padding: 40px 12px;
+          margin-bottom: 0px;
+     }
+
+     .to-top-navigation {
+          justify-content: center;
+     }
+
+     .to-top-nav-link {
+          display: none;
+     }
+
+     .to-top-eggleston {
+          font-size: clamp(50px, 12vw, 80px);
+     }
+}
+
+
+/* ========================================
+    MEDIA QUERIES - SMALL MOBILE
+    ======================================== */
+
+@media (max-width: 480px) {
+     .navbar {
+          padding: 12px;
+     }
+
+     .eggleston-title {
+          font-size: clamp(40px, 18vw, 80px);
+     }
+
+     .about-heading {
+          font-size: 30vw;
+     }
+}
+
+/* ========================================
+   WORK PAGE - GRID
+   ======================================== */
+
+.work-container {
+    padding-top: 50px;
+    min-height: 100vh;
+}
+
+.work-section-title {
+    font-family: 'PP Neue Corp Narrow Ultrabold', sans-serif;
+    font-weight: 900;
+    color: var(--color-tertiary);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    font-stretch: ultra-condensed;
+    font-size: clamp(20px, 4vw, 60px);
+    margin: 12px 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.work-section-title h2 {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    font-family: 'PP Neue Corp Narrow Ultrabold', sans-serif;
+    font-weight: 900;
+    color: var(--color-tertiary);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    font-stretch: ultra-condensed;
+    font-size: clamp(20px, 4vw, 60px);
+}
+
+.work-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    width: 100%;
+    align-items: flex-start;
+    padding: 120px 120px;
+
+}
+
+.work-box {
+    flex: 1 1 calc(50% - 6px);
+    min-width: calc(50% - 6px);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-secondary);
+    border: 2px solid var(--color-tertiary);
+    padding: 6px;
+}
+
+.work-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    margin-bottom: 6px;
+    border-radius: 0 0 10px 10px;
+    border: 2px solid var(--color-tertiary);
+}
+
+.dark-theme .work-image {
+    border: 2px solid var(--color-tertiary);
+}
+
+.work-caption {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 6px;
+    background-color: var(--color-secondary);
+    font-family: 'PP Neue Corp Compact Medium', sans-serif;
+    font-size: clamp(14px, 2.5vw, 16px);
+    color: var(--color-tertiary);
+    flex-wrap: nowrap;
+    min-width: 0;
+}
+
+.work-title {
+    flex: 0 1 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+}
+
+.work-year {
+    flex: 0 0 auto;
+    text-align: center;
+    white-space: nowrap;
+    padding: 0 8px;
+}
+
+.work-plus {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    font-size: 0;
+    position: relative;
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.work-plus::before,
+.work-plus::after {
+    content: '';
+    position: absolute;
+    background-color: var(--color-tertiary);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.work-plus::before {
+    width: 100%;
+    height: 2px;
+}
+
+.work-plus::after {
+    width: 2px;
+    height: 100%;
+}
+
+/* Animazione: la span verticale sparisce e quella orizzontale rimane */
+.work-plus.rotated::after {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+}
+
+/* Pannello metadati */
+.work-metadata {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: var(--color-secondary);
+    margin: 0 -6px;
+}
+
+.work-box.expanded .work-metadata {
+    max-height: 300px;
+    border-top: 2px solid var(--color-tertiary);
+    margin-top: 6px;
+}
+
+.metadata-content {
+    padding: 12px 12px 0px 12px;
+}
+
+.metadata-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 2px 0;
+    font-family: 'PP Neue Corp Compact Medium', sans-serif;
+    font-size: clamp(12px, 2vw, 14px);
+    color: var(--color-tertiary);
+    line-height: 1.2;
+}
+
+.metadata-label {
+    text-transform: uppercase;
+}
+
+.metadata-value {
+    text-align: right;
+}
+
+/* ========================================
+   WORK PAGE - RESPONSIVE
+   ======================================== */
+
+@media (max-width: 768px) {
+    .work-box {
+        flex: 1 1 100%;
+        min-width: 100%;
+    }
+    
+    .work-section-title {
+        padding: 20px 0;
+    }
+    .work-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    width: 100%;
+    align-items: flex-start;
+    padding: 0 12px;
+    margin-top: 64px;
+}
+}
+
+/* ========================================
+   CUSTOM CURSOR
+   ======================================== */
+
+.custom-cursor {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--color-secondary);
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+    transition: width 0.3s ease, height 0.3s ease;
+}
+
+/* Hover effect - enlarge cursor */
+.custom-cursor.hover {
+    width: 25px;
+    height: 25px;
+}
+
+/* Hide custom cursor on mobile/tablet */
+@media (max-width: 1024px) {
+    .custom-cursor {
+        display: none !important;
+    }
+}
