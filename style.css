@@ -955,7 +955,7 @@ body {
      /* Footer - Mobile Layout */
 
      .footer {
-    margin-top: 25vh;
+    margin-top: 15vh;
 }
 
      .footer-text {
@@ -1081,7 +1081,7 @@ body {
      .about-content-section {
           display: flex;
           flex-direction: column;
-          gap: 24px;
+          gap: 12px;
           padding: 12px;
      }
 
