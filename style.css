@@ -1,3 +1,14 @@
+.api-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.api-grid img {
+  width: 100%;
+  height: auto;
+}
+
 /* ========================================
    CSS VARIABLES - THEME COLORS
    ======================================== */
